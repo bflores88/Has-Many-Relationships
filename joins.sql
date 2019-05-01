@@ -56,9 +56,9 @@ where comments.body like '%USB%';
 
 --11
 select distinct posts.title as "post_title", users.first_name, users.last_name, comments.body as "comment_body"
-from comments
+from posts
   inner join posts on comments.post_id = posts.id
-  inner join users on comments.user_id = users.id
+  inner join users on posts.user_id = users.id
 where comments.body like '%matrix%';
 
 --12
