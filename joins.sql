@@ -69,12 +69,13 @@ from comments
 where comments.body like '%SSL%' and posts.content like '%dolorum%';
 
 --13
-select distinct users.first_name as "post_author_first_name", users.last_name as "post_author_last_name", posts.title as "post_title", users.username as 
+select users.first_name as "post_author_first_name", users.last_name as "post_author_last_name", posts.title as "post_title", users.username as 
 "comment_author_username", comments.body as "comment_body"
 from posts
   inner join users on posts.user_id = users.id
   inner join comments on posts.id = comments.post_id
-where comments.body like '%SSL%' and posts.content like '%nemo%' or comments.body like '%firewall%' and posts.content like '%nemo%';
+  inner join users on comments.user_id = user.id
+where (comments.body like '%SSL%' or comments.body like '%firewall%') and posts.content like '%nemo%';
 
 --Additional Queries
 
